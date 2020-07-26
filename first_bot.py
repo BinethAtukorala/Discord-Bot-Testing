@@ -11,6 +11,7 @@ client = discord.Client()
 async def on_ready():
     for guild in client.guilds:
         if guild.name == GUILD:
+            print("Wow, matching guild")
             break
     print(
         f'{client.user} is connected to the following guild:\n'
