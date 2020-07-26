@@ -17,6 +17,14 @@ async def on_member_join(member):
     )
 
 @client.event
+async def on_error(event, *args, **kwarhs):
+    with open('err.log', 'a') as f:
+        if event == 'on_message':
+            f.write(f'Unhandled message: {args[0]}\n')
+        else:
+            raise
+
+@client.event
 async def on_message(message):
     if(message.author == client.user):
         return
@@ -33,5 +41,7 @@ async def on_message(message):
     if message.content == "99!":
         response = random.choice(brooklyn_99_quotes)
         await message.channel.send(response)
+    elif message.content == 'raise-exception':
+        raise discord.DiscordException
 
 client.run(TOKEN)
