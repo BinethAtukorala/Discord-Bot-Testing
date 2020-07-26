@@ -15,7 +15,11 @@ async def on_ready():
 
 #   The above loop can be replaced for a more intuitive, abstracted utility :- discord.utils.find()
 
-    guild = discord.utils.find(lambda g: g.name == GUILD, client.guilds)
+#    guild = discord.utils.find(lambda g: g.name == GUILD, client.guilds)
+
+#   The above can be abstracted one step further with the get() utility
+
+    guild = discord.utils.get(client.guilds, name=GUILD)
 
     print(
         f"{client.user} is connected to the guild {guild.name}(id: {guild.id})"
